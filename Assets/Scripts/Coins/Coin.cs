@@ -1,0 +1,15 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Coin : MonoBehaviour
+{
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.TryGetComponent(out Player player))
+        {
+            player.TakeCoin();
+            gameObject.SetActive(false);
+        }
+    }
+}
