@@ -37,7 +37,7 @@ public class PlayerMover : MonoBehaviour
 
     public void TryJump()
     {
-        if (_player.Jumps > 0)
+        if (_player.Jump)
             Jump();
     }
 
@@ -46,7 +46,8 @@ public class PlayerMover : MonoBehaviour
         _rigidBody.velocity = new Vector2(0, 0);
         _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
 
-        _player.UseAirJump();
+        if (!_player.OnGround)
+            _player.UseExtraJump();
     }
 
     private void Move(float speed)
